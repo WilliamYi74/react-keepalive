@@ -4,3 +4,4 @@ node_modules
 pnpm-lock.yaml
 test-project/node_modules
 test-project/pnpm-lock.yaml
+.DS_Store
