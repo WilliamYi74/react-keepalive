@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": true, // 跳过第三方库类型声明文件的检查
+    "esModuleInterop": true, // 开启将esm代码编译成cjs
+    "allowSyntheticDefaultImports": true, // 启用默认导出 .default访问默认导出的module.exports内容
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "types": ["node"],
+    "experimentalDecorators": true, // 开启装饰器语法
+    "jsx": "react-jsx", // react17+这里可以改成react-jsx 17+后会自动引入一个编译jsx函数 配置babel的automatic
+    "baseUrl": ".",
+    // "paths": {
+    //   "@/*": ["src/*"]
+    // },
+    "declaration": true // 是否生成类型声明文件
+    // "declarationDir": "lib/types" // 类型声明文件默认生成在对应ts文件同级目录 指定一个目录统一生成
+  },
+  "exclude": ["node_modules"],
+  "include": ["src"]
+}
