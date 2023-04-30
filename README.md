@@ -1,10 +1,16 @@
 # react-keepalive &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/@williamyi74/react-keepalive.svg)](https://www.npmjs.com/package/@williamyi74/react-keepalive)
-## Usage step
+
+a react cache component based on react@18+
+
+## Description
+
 组件一共对外暴露了三个接口: KeepaliveScope组件,KeepAliveItem组件及hook函数useCacheDestroy
 1. 用KeepaliveScope组件包裹整个应用
 2. 用KeepaliveItem组件包裹你要缓存的组件给上缓存ID和Key 缓存ID和Key可以设置为一样且要唯一
 3. 被Keepalive组件包裹的组件会注入onActived和onUnActived生命周期钩子函数传入一个回调和缓存组件的cacheId 这个回调会在组件被激活和休眠时执行 下面会演示
 4. useCacheDestroy这个hook会返回一个销毁组件缓存的函数 传入cacheId即可销毁当前为休眠状态的缓存组件 但是不可销毁正处于激活状态的组件
+
+## Usage step
 
 首先用KeepAliveScope组件包裹应用 注意要被包裹在Router组件里面 否则路由hooks会用不了
 
