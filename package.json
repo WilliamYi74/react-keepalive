@@ -1,6 +1,6 @@
 {
   "name": "@williamyi74/react-keepalive",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "基于react18+的缓存组件,拥有类似vue的KeepAlive组件功能效果",
   "main": "index.min.js",
   "scripts": {

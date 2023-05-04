@@ -12,6 +12,14 @@ a react cache component based on react@18+
 
 ## Usage step
 
+使用npm yarn pnpm安装到项目
+
+```bash
+npm i @williamyi74/react-keepalive
+yarn add @williamyi74/react-keepalive
+pnpm add @williamyi74/react-keepalive
+```
+
 首先用KeepAliveScope组件包裹应用 注意要被包裹在Router组件里面 否则路由hooks会用不了
 
 index.tsx/main.tsx:

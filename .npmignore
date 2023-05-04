@@ -10,3 +10,4 @@ pnpm-lock.yaml
 global.d.ts
 tsconfig.json
 .DS_Store
+test-project
