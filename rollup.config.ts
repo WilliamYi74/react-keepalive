@@ -11,17 +11,21 @@ import { existsSync } from 'fs'
 import { unlink, rmdir, lstat } from 'fs/promises'
 const commonPlugins = [
   nodeResolve({
-    extensions: ['.ts', '.tsx'],
+    extensions: ['.ts', '.tsx'], // 告诉node要解析的文件扩展名
   }),
   typescript2({
-    tsConfig: resolve(__dirname, 'tsconfig.json'),
+    tsConfig: resolve(__dirname, 'tsconfig.json'), // 指定ts配置文件位置
     // useTsconfigDeclarationDir: true, // 使用配置文件里的DeclarationDir 不开启默认强制生成在和文件同级目录同名文件
   } as Partial<IOptions>),
   babel({
-    babelrc: true,
+    babelrc: true, // 使用.babelrc配置文件
   }),
-  commonjs(),
+  commonjs(), // 这个插件比如加 用来转换成commonjs 然后注入react17新的jsx组件转换函数_JSX react17+不再用createElement 不用这个插件只用babel处理会报错
 ]
+/**
+ * @description 根据路径删除目录
+ * @param dirs 删除的目录路径
+ */
 const removeDir = async (...dirs: string[]) => {
   for (const dir of dirs) {
     const absolutePath = resolve(__dirname, dir)
@@ -92,18 +96,20 @@ const resolveRollupOptions = async () => {
   return results
 }
 export default defineConfig(async (/* commandLineArgs */) => {
+  // 每次构建前先删除上一次的产物
   await removeDir('es', 'lib')
-  // return resolveRollupOptions()
+  // 生成两个产物 一个esmodule模块 一个umd通用模块
   return [
     {
-      input: resolve(__dirname, 'src/index.ts'),
-      treeshake: true,
-      external: ['react', 'react-dom'],
+      input: resolve(__dirname, 'src/index.ts'), // 指定入口文件
+      treeshake: true, // 开启treeshaking
+      external: ['react', 'react-dom'], // 第三方库使用外部依赖
       output: {
-        name: 'ReactAlive',
-        file: resolve(__dirname, 'es/index.js'),
-        format: 'esm',
-        sourcemap: false,
+        name: 'ReactAlive', // 这个name用于打包成umd/iife模块时模块挂到全局对象上的key
+        file: resolve(__dirname, 'es/index.js'), // 构建的产物输出位置和文件名
+        format: 'esm', // 构建产物的模块化类型
+        sourcemap: false, // 关闭sourcemap
+        // 指定被排除掉的外部依赖在全局对象上的key
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
