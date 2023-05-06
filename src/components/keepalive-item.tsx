@@ -21,10 +21,14 @@ type KeepAliveItemProps = {
   parentNodeStyle?: CacheActionPayload['parentNodeStyle']
   containerNodeStyle?: CSSProperties
 }
-export type KeepAliveItemMergeProps<P = {}> = KeepAliveItemProps & {
+export type KeepAliveComponentProps<P = {}> = {
+  cacheId?: CacheActionPayload['cacheId']
   onActived?: CacheEventListener
   onUnActived?: CacheEventListener
 } & P
+type KeepAliveItemMergeProps<P = {}> = KeepAliveItemProps &
+  Pick<KeepAliveComponentProps, 'onActived' | 'onUnActived'> &
+  P
 const renderChildren =
   (
     children: KeepAliveItemProps['children'],

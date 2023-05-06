@@ -69,9 +69,9 @@ Page1组件演示被包裹的业务组件使用细节:
 ```tsx
 import { KeepAliveItem } from '@williamyi74/react-keepalive/es'
 import { useCacheDestroy } from '@williamyi74/react-keepalive/es'
-import { KeepAliveItemMergeProps } from '@williamyi74/react-keepalive/es/components/keepalive-item'
+import { KeepAliveComponentProps } from '@williamyi74/react-keepalive/es/components/keepalive-item'
 // 被KeepAliveItem组件包裹的业务组件Props会注入两个生命周期钩子函数和cacheId
-// 编写被包裹的业务组件自身的业务props类型传入KeepAliveItemMergeProps
+// 编写被包裹的业务组件自身的业务props类型传入KeepAliveComponentProps
 interface IProps {
     // ...
 }
@@ -81,7 +81,7 @@ const Page1 = ({
   onActived,
   onUnActived,
   cacheId,
-}: KeepAliveItemMergeProps<IProps>) => {
+}: KeepAliveComponentProps<IProps>) => {
   const cacheDestroy = useCacheDestroy() // 缓存销毁的hook
   // 组件加载后注册生命周期钩子函数
   useEffect(() => {
